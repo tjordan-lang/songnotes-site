@@ -87,8 +87,8 @@
     }
 
     .topbar-inner--logo img {
-      width: 86px;
-      height: auto;
+      width: auto;
+      height: 100px;
       display: block;
       object-fit: contain;
       border: 0;
@@ -431,7 +431,8 @@
     }
 
     .hero-shot {
-      width: min(100%, 620px);
+      width: 90%;
+      max-width: 1180px;
       margin: 0;
       padding: 0;
       background: transparent;
@@ -449,10 +450,10 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-radius: 28px;
+      border-radius: 8px;
       background: transparent;
       box-shadow:
-        0 34px 90px rgba(0,0,0,0.62),
+        0 38px 110px rgba(0,0,0,0.68),
         0 1px 0 rgba(255,255,255,0.05) inset;
     }
 
@@ -547,25 +548,29 @@
     .feature.feature-wide {
       grid-column: span 8;
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      gap: 22px;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 20px;
       align-items: center;
       min-height: 0;
-      padding: 0;
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-      overflow: visible;
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .feature.feature-wide > div {
+      padding-right: 4px;
     }
 
     .feature-image {
       width: 100%;
       display: block;
       object-fit: cover;
-      border-radius: 28px;
+      border-radius: 8px;
       background: transparent;
       box-shadow:
-        0 34px 90px rgba(0,0,0,0.62),
+        0 38px 110px rgba(0,0,0,0.68),
         0 1px 0 rgba(255,255,255,0.05) inset;
     }
 
