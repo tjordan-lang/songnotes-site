@@ -325,7 +325,7 @@
       display: grid;
       place-items: center end;
       justify-self: end;
-      padding-top: 18px;
+      padding-top: 64px;
     }
 
     .orb {
@@ -482,7 +482,7 @@
       background: transparent;
       border: 0;
       box-shadow: none;
-      transform: perspective(1200px) translateY(0px) rotateY(0deg) rotateX(0deg) rotate(-4deg);
+      transform: perspective(1200px) translateY(14px) rotateY(0deg) rotateX(0deg) rotate(-4deg);
       transform-origin: center;
       will-change: transform;
       position: relative;
@@ -954,7 +954,7 @@
           const dy = (y - cy) / rect.height;
           const ry = Math.max(-14, Math.min(14, dx * 18));
           const rx = Math.max(-10, Math.min(10, -dy * 14));
-          heroShot.style.transform = 'perspective(1200px) translateY(0px) rotateY(' + ry + 'deg) rotateX(' + rx + 'deg) rotate(-4deg)';
+          heroShot.style.transform = 'perspective(1200px) translateY(14px) rotateY(' + ry + 'deg) rotateX(' + rx + 'deg) rotate(-4deg)';
         };
 
         hero.addEventListener('pointermove', (e) => {
