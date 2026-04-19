@@ -60,45 +60,20 @@
 
     .shell { position: relative; z-index: 1; }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      background: rgba(5,5,5,0.58);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .topbar-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 18px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 16px;
-    }
-
-    .topbar-inner--logo {
-      width: 100%;
-      padding-top: 14px;
-      padding-bottom: 14px;
-    }
-
-    .topbar-inner--logo img {
+    .site-logo {
+      position: fixed;
+      top: 18px;
+      left: 22px;
+      z-index: 25;
       width: auto;
-      height: 100px;
+      height: 46px;
       display: block;
       object-fit: contain;
       border: 0;
       border-radius: 0;
       background: transparent;
       box-shadow: none;
-    }
-
-    .brand, .nav {
-      display: none;
+      pointer-events: none;
     }
 
     .brand {
@@ -423,7 +398,7 @@
 
     .visual {
       position: relative;
-      min-height: 680px;
+      min-height: 760px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -431,8 +406,8 @@
     }
 
     .hero-shot {
-      width: 90%;
-      max-width: 1180px;
+      width: 95%;
+      max-width: 1500px;
       margin: 0;
       padding: 0;
       background: transparent;
@@ -453,7 +428,7 @@
       border-radius: 8px;
       background: transparent;
       box-shadow:
-        0 38px 110px rgba(0,0,0,0.68),
+        0 42px 120px rgba(0,0,0,0.72),
         0 1px 0 rgba(255,255,255,0.05) inset;
     }
 
@@ -548,13 +523,13 @@
     .feature.feature-wide {
       grid-column: span 8;
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      gap: 20px;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 18px;
       align-items: center;
       min-height: 0;
-      padding: 22px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.09);
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
       box-shadow: var(--shadow-soft);
       overflow: hidden;
     }
@@ -570,7 +545,7 @@
       border-radius: 8px;
       background: transparent;
       box-shadow:
-        0 38px 110px rgba(0,0,0,0.68),
+        0 42px 120px rgba(0,0,0,0.72),
         0 1px 0 rgba(255,255,255,0.05) inset;
     }
 
@@ -715,7 +690,7 @@
     }
 
     @media (max-width: 560px) {
-      .topbar-inner, .hero, .section, .footer { padding-left: 18px; padding-right: 18px; }
+      .hero, .section, .footer { padding-left: 18px; padding-right: 18px; }
       .btn { width: 100%; }
       .cta-row, .downloads { flex-direction: column; }
       .hero { padding-top: 42px; gap: 18px; }
@@ -723,17 +698,14 @@
       .workflow, .download-card, .feature { border-radius: 22px; }
       .screen-toolbar { flex-direction: column; align-items: stretch; gap: 12px; }
       .search-bar { width: 100%; }
+      .site-logo { height: 46px; top: 16px; left: 16px; }
     }
   </style>
 </head>
 <body>
   <div class="noise"></div>
   <div class="shell">
-    <header class="topbar">
-      <div class="topbar-inner topbar-inner--logo" aria-label="SongNotes">
-        <img src="songnotes logo.png" alt="SongNotes" />
-      </div>
-    </header>
+    <img class="site-logo" src="songnotes logo.png" alt="SongNotes" />
 
     <main>
       <section class="hero">
