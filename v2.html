@@ -239,10 +239,11 @@
 
     .cta-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 24px 24px;
+      flex-wrap: nowrap;
+      gap: 24px;
       margin-top: 40px;
       align-items: center;
+      width: 100%;
     }
 
     .btn {
@@ -264,6 +265,7 @@
       cursor: pointer;
       user-select: none;
       white-space: nowrap;
+      flex: 0 0 auto;
     }
 
     .btn-primary {
@@ -301,10 +303,11 @@
     .hero-meta {
       margin-top: 34px;
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 18px;
       color: var(--subtle);
       font-size: 0.88rem;
+      width: 100%;
     }
 
     .pill {
@@ -312,6 +315,8 @@
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.03);
+      flex: 0 0 auto;
+      white-space: nowrap;
     }
 
     .visual {
@@ -319,7 +324,7 @@
       min-height: 760px;
       display: grid;
       place-items: center;
-      padding-top: 20px;
+      padding-top: 56px;
     }
 
     .orb {
@@ -762,6 +767,8 @@
       .screen-toolbar { flex-direction: column; align-items: stretch; gap: 12px; }
       .search-bar { width: 100%; }
       .site-logo { height: 38px; margin: 16px 0 0 16px; }
+      .cta-row, .hero-meta { flex-wrap: wrap; }
+      .btn, .pill { width: 100%; }
     }
   </style>
 </head>
