@@ -933,6 +933,166 @@
         width: 100%;
       }
     }
+  
+    .email-capture-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 120;
+      background: rgba(9, 11, 14, 0.42);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .email-capture-modal.is-open {
+      display: flex;
+    }
+
+    .email-capture-backdrop {
+      position: absolute;
+      inset: 0;
+    }
+
+    .email-capture-card {
+      position: relative;
+      width: min(100%, 560px);
+      padding: 28px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.92);
+      color: #0b0c10;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.30);
+      overflow: hidden;
+      transform: translateY(8px);
+    }
+
+    .email-capture-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.28));
+      pointer-events: none;
+    }
+
+    .email-capture-header,
+    .email-capture-body,
+    .email-capture-actions {
+      position: relative;
+      z-index: 1;
+    }
+
+    .email-capture-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .email-capture-eyebrow {
+      margin: 0 0 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(11,12,16,0.56);
+    }
+
+    .email-capture-title {
+      margin: 0;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+    }
+
+    .email-capture-close {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(11,12,16,0.10);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      color: rgba(11,12,16,0.72);
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+
+    .email-capture-close:hover {
+      background: rgba(255,255,255,0.96);
+      color: #0b0c10;
+    }
+
+    .email-capture-copy {
+      margin: 0 0 22px;
+      color: rgba(11,12,16,0.72);
+      font-size: 1rem;
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+
+    .email-capture-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .email-capture-field {
+      width: 100%;
+      min-height: 52px;
+      padding: 0 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(11,12,16,0.12);
+      background: rgba(255,255,255,0.86);
+      color: #0b0c10;
+      font: inherit;
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .email-capture-field::placeholder {
+      color: rgba(11,12,16,0.40);
+    }
+
+    .email-capture-field:focus {
+      border-color: rgba(11,12,16,0.24);
+      box-shadow: 0 0 0 4px rgba(11,12,16,0.06);
+    }
+
+    .email-capture-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 2px;
+    }
+
+    .email-capture-submit {
+      min-width: 146px;
+      min-height: 48px;
+      border: none;
+      border-radius: 999px;
+      padding: 0 20px;
+      background: linear-gradient(180deg, #0d0e12, #1a1b20);
+      color: white;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.20);
+    }
+
+    .email-capture-submit:hover {
+      transform: translateY(-1px);
+    }
+
+    .email-capture-submit:disabled {
+      opacity: 0.72;
+      cursor: progress;
+    }
+
   </style>
 </head>
 <body>
@@ -1094,6 +1254,26 @@
         </figure>
       </div>
     </div>
+
+    <div class="email-capture-modal" aria-hidden="true">
+      <div class="email-capture-backdrop" data-email-capture-close></div>
+      <div class="email-capture-card" role="dialog" aria-modal="true" aria-labelledby="email-capture-title">
+        <div class="email-capture-header">
+          <div>
+            <p class="email-capture-eyebrow">SongNotes beta access</p>
+            <h3 class="email-capture-title" id="email-capture-title">Thanks for being a beta tester!</h3>
+          </div>
+          <button class="email-capture-close" type="button" aria-label="Close modal" data-email-capture-close>&times;</button>
+        </div>
+        <p class="email-capture-copy">SongNotes will eventually be a paid app, but it’s free for you as a beta tester. Enter your email below to stay updated.</p>
+        <form class="email-capture-form">
+          <input class="email-capture-field" type="email" name="email" autocomplete="email" placeholder="Email address" required />
+          <div class="email-capture-actions">
+            <button class="email-capture-submit btn" type="submit">Download</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -1123,6 +1303,88 @@
       const syncMobileOverlay = () => document.body.classList.toggle('is-mobile-locked', mobileMedia.matches);
       syncMobileOverlay();
       mobileMedia.addEventListener?.('change', syncMobileOverlay);
+      const emailCaptureModal = document.querySelector('.email-capture-modal');
+      const emailCaptureForm = emailCaptureModal?.querySelector('.email-capture-form');
+      const emailCaptureField = emailCaptureModal?.querySelector('.email-capture-field');
+      const emailCaptureSubmit = emailCaptureModal?.querySelector('.email-capture-submit');
+      const emailCaptureCloseButtons = emailCaptureModal ? emailCaptureModal.querySelectorAll('[data-email-capture-close]') : [];
+      const songnotesDownloadSelector = 'a[href*="songnotes-proxy.tjordan-ad4.workers.dev/download"]';
+      const emailCaptureEndpoint = window.SONGNOTES_EMAIL_CAPTURE_URL || '/api/songnotes-email-capture';
+      let pendingDownloadUrl = '';
+      let emailCaptureReturnFocus = null;
+
+      const openEmailCapture = (downloadUrl, focusTarget) => {
+        if (!emailCaptureModal) return;
+        pendingDownloadUrl = downloadUrl;
+        emailCaptureReturnFocus = focusTarget || document.activeElement;
+        emailCaptureModal.classList.add('is-open');
+        emailCaptureModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('is-lightbox-open');
+        requestAnimationFrame(() => emailCaptureField?.focus());
+      };
+
+      const closeEmailCapture = () => {
+        if (!emailCaptureModal) return;
+        emailCaptureModal.classList.remove('is-open');
+        emailCaptureModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('is-lightbox-open');
+        emailCaptureReturnFocus?.focus?.();
+        emailCaptureReturnFocus = null;
+      };
+
+      document.addEventListener('click', (event) => {
+        const link = event.target.closest?.(songnotesDownloadSelector);
+        if (!link) return;
+        event.preventDefault();
+        openEmailCapture(link.href, link);
+      }, true);
+
+      emailCaptureCloseButtons.forEach((button) => {
+        button.addEventListener('click', closeEmailCapture);
+      });
+
+      emailCaptureModal?.addEventListener('click', (event) => {
+        if (event.target === emailCaptureModal) closeEmailCapture();
+      });
+
+      emailCaptureForm?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const email = String(emailCaptureField?.value || '').trim();
+        if (!email || !pendingDownloadUrl) return;
+
+        emailCaptureSubmit && (emailCaptureSubmit.disabled = true);
+        const payload = {
+          email,
+          downloadUrl: pendingDownloadUrl,
+          source: 'songnotes-site/v2.html',
+          capturedAt: new Date().toISOString()
+        };
+
+        try {
+          await fetch(emailCaptureEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } catch (error) {
+          console.warn('SongNotes email capture placeholder failed', error);
+        }
+
+        const downloadUrl = pendingDownloadUrl;
+        closeEmailCapture();
+        emailCaptureSubmit && (emailCaptureSubmit.disabled = false);
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.click();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && emailCaptureModal?.classList.contains('is-open')) {
+          closeEmailCapture();
+        }
+      });
 
       const buildTiltTransform = (rotateY, rotateX, translateY, rotateZ, scale = 1) => (
         'perspective(1200px) translateY(' + translateY + 'px) rotateY(' + rotateY + 'deg) rotateX(' + rotateX + 'deg) rotate(' + rotateZ + 'deg) scale(' + scale + ')'
